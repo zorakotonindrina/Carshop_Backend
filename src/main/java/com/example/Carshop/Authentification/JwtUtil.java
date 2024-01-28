@@ -21,7 +21,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public class JwtUtil {
 
     private final String secret_key = "mysecretkey";
-    private long accessTokenValidity = 60;
+    private long accessTokenValidity = 1140;
 
     private final JwtParser jwtParser;
 
