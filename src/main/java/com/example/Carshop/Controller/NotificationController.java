@@ -20,7 +20,7 @@ public class NotificationController {
     @Autowired
     private NotificationService NotificationService;
 
-    @GetMapping("/voir")
+    @GetMapping
     public ResponseEntity<APIResponse> getAllNotifications() {
         try {
             List<Notification>  valeure = NotificationService.getAllNotifications();

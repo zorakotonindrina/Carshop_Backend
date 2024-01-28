@@ -20,7 +20,7 @@ public class Mouvement_compteController {
     @Autowired
     private Mouvement_compteService Mouvement_compteService;
 
-    @GetMapping("/voir")
+    @GetMapping
     public ResponseEntity<APIResponse> getAllMouvement_comptes() {
         try {
             List<Mouvement_compte>  valeure = Mouvement_compteService.getAllMouvement_comptes();

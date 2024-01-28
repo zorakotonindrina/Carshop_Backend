@@ -20,7 +20,7 @@ public class CouleurController {
     @Autowired
     private CouleurService CouleurService;
 
-    @GetMapping("/voir")
+    @GetMapping
     public ResponseEntity<APIResponse> getAllCouleurs() {
         try {
             List<Couleur>  valeure = CouleurService.getAllCouleurs();

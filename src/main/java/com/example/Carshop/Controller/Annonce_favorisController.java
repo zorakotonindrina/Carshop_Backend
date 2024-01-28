@@ -30,7 +30,7 @@ public class Annonce_favorisController {
 
    
 
-    @GetMapping("/voir")
+    @GetMapping
     public ResponseEntity<APIResponse> getAllAnnonce_favoriss() {
         try {
             List<Annonce_favoris> liste =  Annonce_favorisService.getAllAnnonce_favoriss();

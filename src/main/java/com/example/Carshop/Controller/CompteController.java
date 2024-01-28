@@ -20,7 +20,7 @@ public class CompteController {
     @Autowired
     private CompteService CompteService;
 
-    @GetMapping("/voir")
+    @GetMapping
     public ResponseEntity<APIResponse> getAllComptes() {
         try {
             List<Compte>  valeure = CompteService.getAllComptes();

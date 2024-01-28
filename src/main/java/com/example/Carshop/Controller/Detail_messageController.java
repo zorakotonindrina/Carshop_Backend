@@ -20,7 +20,7 @@ public class Detail_messageController {
     @Autowired
     private Detail_messageService Detail_messageService;
 
-    @GetMapping("/voir")
+    @GetMapping
     public ResponseEntity<APIResponse> getAllDetail_messages() {
         try {
             List<Detail_message>  valeure = Detail_messageService.getAllDetail_messages();

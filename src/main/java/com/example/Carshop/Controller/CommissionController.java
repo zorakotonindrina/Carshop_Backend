@@ -20,7 +20,7 @@ public class CommissionController {
     @Autowired
     private CommissionService CommissionService;
 
-    @GetMapping("/voir")
+    @GetMapping
     public ResponseEntity<APIResponse> getAllCommissions() {
         try {
             List<Commission>  valeure = CommissionService.getAllCommissions();

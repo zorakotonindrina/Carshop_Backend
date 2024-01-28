@@ -20,7 +20,7 @@ public class Vehicule_photoController {
     @Autowired
     private Vehicule_photoService Vehicule_photoService;
 
-    @GetMapping("/voir")
+    @GetMapping
     public ResponseEntity<APIResponse> getAllVehicule_photos() {
         try {
             List<Vehicule_photo>  valeure = Vehicule_photoService.getAllVehicule_photos();

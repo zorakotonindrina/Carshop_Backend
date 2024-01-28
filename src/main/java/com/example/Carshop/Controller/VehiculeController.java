@@ -56,7 +56,7 @@ public class VehiculeController {
     private Type_carburantService Type_carburantService;
     
 
-    @GetMapping("/voir")
+    @GetMapping
     public ResponseEntity<APIResponse> getAllVehicules() {
         try {
             List<Vehicule>  valeure = VehiculeService.getAllVehicules();

@@ -20,7 +20,7 @@ public class Detail_annonceController {
     @Autowired
     private Detail_annonceService Detail_annonceService;
 
-    @GetMapping("/voir")
+    @GetMapping
     public ResponseEntity<APIResponse> getAllDetail_annonces() {
         try {
             List<Detail_annonce>  valeure = Detail_annonceService.getAllDetail_annonces();

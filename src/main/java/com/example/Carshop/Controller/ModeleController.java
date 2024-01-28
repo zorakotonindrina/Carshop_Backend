@@ -20,7 +20,7 @@ public class ModeleController {
     @Autowired
     private ModeleService ModeleService;
 
-    @GetMapping("/voir")
+    @GetMapping
     public ResponseEntity<APIResponse> getAllModeles() {
         try {
             List<Modele>  valeure = ModeleService.getAllModeles();

@@ -48,7 +48,7 @@ public class MarqueController {
         }
     }
 
-    @PostMapping("/insert")
+    @PostMapping
     public ResponseEntity<APIResponse> saveMarque(@RequestBody Marque Marque) {
         try {
             Marque  valeure = MarqueService.saveMarque(Marque);

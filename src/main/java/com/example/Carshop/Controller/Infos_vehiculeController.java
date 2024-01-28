@@ -20,7 +20,7 @@ public class Infos_vehiculeController {
     @Autowired
     private Infos_vehiculeService Infos_vehiculeService;
 
-    @GetMapping("/voir")
+    @GetMapping
     public ResponseEntity<APIResponse> getAllInfos_vehicules() {
         try {
             List<Infos_vehicule>  valeure = Infos_vehiculeService.getAllInfos_vehicules();

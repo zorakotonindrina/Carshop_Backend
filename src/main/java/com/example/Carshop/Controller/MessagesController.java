@@ -20,7 +20,7 @@ public class MessagesController {
     @Autowired
     private MessagesService MessagesService;
 
-    @GetMapping("/voir")
+    @GetMapping
     public ResponseEntity<APIResponse> getAllMessagess() {
         try {
             List<Messages>  valeure = MessagesService.getAllMessagess();

@@ -20,7 +20,7 @@ public class CategorieController {
     @Autowired
     private CategorieService CategorieService;
 
-    @GetMapping("/voir")
+    @GetMapping
     public ResponseEntity<APIResponse> getAllCategories() {
         try {
             List<Categorie>  valeure = CategorieService.getAllCategories();
