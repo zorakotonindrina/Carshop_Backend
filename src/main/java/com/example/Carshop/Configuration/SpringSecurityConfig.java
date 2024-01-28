@@ -1,5 +1,8 @@
 package com.example.Carshop.Configuration;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,6 +19,9 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.example.Carshop.Authentification.JwtAuthorizationFilter;
 
@@ -56,7 +62,9 @@ public class SpringSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
+        http.csrf().disable()
+                .cors(cors->cors.configurationSource(this.corsConfigurationSource()))
+                .authorizeRequests()
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/carshop/Vehicules/**").permitAll()
                 .requestMatchers("/carshop/Detail_annonces/**").permitAll()
@@ -81,6 +89,19 @@ public class SpringSecurityConfig {
         UserDetails admin = User.builder().username("admin").password(passwordEncoder().encode("admin"))
                 .roles("USER", "ADMIN").build();
         return new InMemoryUserDetailsManager(user, admin);
+    }
+
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(List.of("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+        configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
     @Bean
