@@ -1,6 +1,8 @@
 package com.example.Carshop.Controller;
 
+import com.example.Carshop.Model.Annonce;
 import com.example.Carshop.Model.Annonce_refus;
+import com.example.Carshop.Service.AnnonceService;
 import com.example.Carshop.Service.Annonce_refusService;
 import com.example.Carshop.api.APIResponse;
 
@@ -23,6 +25,8 @@ public class Annonce_refusController {
     @Autowired
     private Annonce_refusService Annonce_refusService;
 
+    @Autowired
+    private AnnonceService AnnonceService;
 
     @GetMapping("/{id}")
     public ResponseEntity<APIResponse> saveAnnonce_refus(@PathVariable int id) {
@@ -35,6 +39,9 @@ public class Annonce_refusController {
             af.setId_annonce(id);
             af.setDate_refus(sqlDate);
             Annonce_refus  valeure = Annonce_refusService.saveAnnonce_refus(af);
+            Annonce a= AnnonceService.getAnnonceById(id);
+            a.setEtat(2);
+            AnnonceService.saveAnnonce(a);
             APIResponse api = new APIResponse(null, valeure);
             return ResponseEntity.ok(api);
         } catch (Exception e) {

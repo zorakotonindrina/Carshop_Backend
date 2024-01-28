@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.Carshop.Model.Detail_annonce;
 import com.example.Carshop.Repository.Detail_annonceRepository;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,6 +18,19 @@ public class Detail_annonceService {
     public List<Detail_annonce> getAllDetail_annonces() {
         return Detail_annonceRepository.findAll();
     }
+
+
+    public List<Detail_annonce> getAllDetail_annoncesNonValides() {
+        List<Detail_annonce> liste = Detail_annonceRepository.findAll();
+        List<Detail_annonce> rep = new ArrayList<>();
+        for (int i = 0; i < liste.size() ; i++) {
+            if(liste.get(i).getEtat() == 0){
+                rep.add(liste.get(i));
+            }
+        }
+        return rep;
+    }
+
 
     public Detail_annonce getDetail_annonceById(int id) {
         return Detail_annonceRepository.findById(id).orElse(null);

@@ -33,6 +33,20 @@ public class Detail_annonceController {
         }
     }
 
+
+    @GetMapping("/nonvalides")
+    public ResponseEntity<APIResponse> getAllDetail_annoncesNonValides() {
+        try {
+            List<Detail_annonce>  valeure = Detail_annonceService.getAllDetail_annoncesNonValides();
+            APIResponse api = new APIResponse(null, valeure);
+            return ResponseEntity.ok(api);
+        } catch (Exception e) {
+            e.printStackTrace();
+            APIResponse response = new APIResponse(e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<APIResponse> getDetail_annonceById(@PathVariable int id) {
          try {

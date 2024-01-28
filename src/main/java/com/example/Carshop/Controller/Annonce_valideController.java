@@ -1,6 +1,8 @@
 package com.example.Carshop.Controller;
 
+import com.example.Carshop.Model.Annonce;
 import com.example.Carshop.Model.Annonce_valide;
+import com.example.Carshop.Service.AnnonceService;
 import com.example.Carshop.Service.Annonce_valideService;
 import com.example.Carshop.api.APIResponse;
 
@@ -22,8 +24,11 @@ public class Annonce_valideController {
     @Autowired
     private Annonce_valideService Annonce_valideService;
 
+    @Autowired
+    private AnnonceService AnnonceService;
+
      @GetMapping("/{id}")
-    public ResponseEntity<APIResponse> saveAnnonce_refus(@PathVariable int id) {
+    public ResponseEntity<APIResponse> saveAnnonce_valide(@PathVariable int id) {
         try {
 
             java.util.Date currentDate = Calendar.getInstance().getTime();
@@ -33,6 +38,9 @@ public class Annonce_valideController {
             af.setId_annonce(id);
             af.setDate_valide(sqlDate);
             Annonce_valide  valeure = Annonce_valideService.saveAnnonce_valide(af);
+            Annonce a= AnnonceService.getAnnonceById(id);
+            a.setEtat(1);
+            AnnonceService.saveAnnonce(a);
             APIResponse api = new APIResponse(null, valeure);
             return ResponseEntity.ok(api);
 
