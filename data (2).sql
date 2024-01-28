@@ -176,30 +176,30 @@ INSERT INTO vehicule (id_utilisateur, id_modele, id_marque, id_categorie, id_typ
 VALUES
     (2, 35, 9, 10, 2, '1111WWT', 2, 2022, 7.5, 60.0, 4, 1, 15000.0),
     (3, 4, 1, 11, 2, '2222TBJ', 14, 2020, 7.0, 70.0, 5, 1, 30000.0),
-    (4, 77, 10, 1, 1, '3333TBH', 1, 2020, 7.5, 80.0, 5, 1, 15000.0),
+    (4, 17, 10, 1, 1, '3333TBH', 1, 2020, 7.5, 80.0, 5, 1, 15000.0),
     (5, 9, 3, 2, 1, '4444TBL', 6, 2021, 7., 70.0, 5, 1, 15000.0);
 
 
 INSERT INTO infos_vehicule (id_vehicule, climatiseur, chaise_bebe, gps, confre, musique, ceinture_securite, bleutooth, tableau_bord, verouillage_centralise, verouillage_distance, kit_vehicule)
 VALUES
-    (1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-    (2, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1),
-    (3, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0);
-    (4, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0);
+    (5, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+    (6, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1),
+    (7, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0),
+    (8, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0);
 
     INSERT INTO vehicule_photo (id_vehicule, photo)
     values
-        (1,'f1.jpg'),
-        (2,'k1.jpg'),
-        (3,'z1.jpg'),
-        (4,'b1.jpg');
+        (5,'f1.jpg'),
+        (6,'k1.jpg'),
+        (7,'z1.jpg'),
+        (8,'b1.jpg');
 
         INSERT INTO annonce (id_vehicule, prix, descriptions, date_annonce, validations, etat)
     values
-        (1,400000000, 'Bogosy', '2024-01-14',0,0),
-        (2,300000000, 'Manja', '2024-01-14',1,0),
-        (3,350000000, 'Bg', '2024-01-13',1,1),
-        (4,380000000, 'Gg', '2024-01-11',1,1);
+        (5,400000000, 'Bogosy', '2024-01-14',0,0),
+        (6,300000000, 'Manja', '2024-01-14',1,0),
+        (7,350000000, 'Bg', '2024-01-13',1,1),
+        (8,380000000, 'Gg', '2024-01-11',1,1);
 
         INSERT INTO annonce_refus (id_annonce, date_refus)
     values 

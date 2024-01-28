@@ -219,7 +219,7 @@ CREATE or replace view v_info_vehicule as select
     Utilisateur.profil
     from vehicule 
     join modele on vehicule.id_modele = modele.id_modele
-    join marque on marque.id_marque = marque.id_marque
+    join marque on vehicule.id_marque = marque.id_marque
     join categorie on vehicule.id_categorie = categorie.id_categorie
     join type_carburant on vehicule.id_type_carburant = type_carburant.id_type_carburant
     join couleur on vehicule.id_couleur = couleur.id_couleur
@@ -230,10 +230,11 @@ CREATE or replace view v_info_vehicule as select
 
     CREATE OR replace view v_annonce_favoris as 
     select 
-    id_annonce,
-    sum(annonce_favoris.id_annonce_favoris) as reactions
-    from annonce_favoris 
-    group by id_annonce;
+    annonce.id_annonce,
+    COALESCE(sum(annonce_favoris.id_annonce_favoris),0) as reactions
+    from annonce 
+    LEFT join annonce_favoris on annonce.id_annonce = annonce_favoris.id_annonce
+    group by annonce.id_annonce;
 
 
 
@@ -336,7 +337,6 @@ CREATE or replace view v_info_vehicule as select
 
 
 
-drop view stat_marque;
 CREATE or replace view stat_marque as 
 select
 marque.id_marque,
@@ -345,7 +345,7 @@ sum(detail_annonce.id_annonce)  as nombre from
 detail_annonce join marque on marque.nom_marque = detail_annonce.marque 
 group by marque.id_marque,detail_annonce.marque order by nombre limit 10;
     
-drop view stat_modele;
+
 CREATE or replace view stat_modele as 
 select
 modele.id_modele,
@@ -354,7 +354,7 @@ sum(detail_annonce.id_annonce) as nombre  from
 detail_annonce join modele on modele.nom_modele = detail_annonce.modele
 group by modele.id_modele,detail_annonce.modele order by nombre limit 10;
 
-drop view stat_categorie
+
 CREATE or replace view stat_categorie as 
 select
 categorie.id_categorie,

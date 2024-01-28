@@ -45,7 +45,6 @@ public class Detail_annonce {
     int kit_vehicule;
     String nom;
     String prenom;
-    Date date_naissance;
     String email;
     String mdp;
     int profil;
