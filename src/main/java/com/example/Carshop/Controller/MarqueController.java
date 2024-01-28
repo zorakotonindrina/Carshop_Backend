@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -23,6 +25,7 @@ public class MarqueController {
      @GetMapping("/voir")
     public ResponseEntity<APIResponse> getAllMarques() {
         try {
+            System.out.println(((UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
             List<Marque>  valeure = MarqueService.getAllMarques();
             APIResponse api = new APIResponse(null, valeure);
             return ResponseEntity.ok(api);
