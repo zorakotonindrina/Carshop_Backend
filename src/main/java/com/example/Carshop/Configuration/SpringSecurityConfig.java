@@ -68,7 +68,6 @@ public class SpringSecurityConfig {
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/carshop/Vehicules/**").permitAll()
                 .requestMatchers("/carshop/Detail_annonces/**").permitAll()
-                .requestMatchers("/carshop/Marques/**").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
