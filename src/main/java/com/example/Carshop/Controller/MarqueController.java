@@ -21,7 +21,7 @@ public class MarqueController {
     @Autowired
     private MarqueService MarqueService;
 
-     @GetMapping("/voir")
+     @GetMapping
     public ResponseEntity<APIResponse> getAllMarques() {
         try {
             System.out.println((SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
