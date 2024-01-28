@@ -25,7 +25,7 @@ public class MarqueController {
      @GetMapping("/voir")
     public ResponseEntity<APIResponse> getAllMarques() {
         try {
-            System.out.println(((UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
+            System.out.println((SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
             List<Marque>  valeure = MarqueService.getAllMarques();
             APIResponse api = new APIResponse(null, valeure);
             return ResponseEntity.ok(api);
