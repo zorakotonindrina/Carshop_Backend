@@ -4,6 +4,8 @@ import com.example.Carshop.Model.Annonce;
 import com.example.Carshop.Service.AnnonceService;
 import com.example.Carshop.api.APIResponse;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,20 @@ public class AnnonceController {
         }
        
     }
+
+    @GetMapping
+    public ResponseEntity<APIResponse> getAllCategories() {
+        try {
+            List<Annonce>  valeure = AnnonceService.getAllAnnonces();
+            APIResponse api = new APIResponse(null, valeure);
+            return ResponseEntity.ok(api);
+        } catch (Exception e) {
+            e.printStackTrace();
+            APIResponse response = new APIResponse(e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
 
    
 
