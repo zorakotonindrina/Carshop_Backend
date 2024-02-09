@@ -37,7 +37,7 @@ public class Annonce_favorisService {
         return rep;
     }
 
-    public Annonce_favoris getAnnonce_favorisByDeuxID(int id, int iduser) {
+    public  Annonce_favoris getAnnonce_favorisByDeuxID(int id, int iduser) {
         List<Annonce_favoris> liste= Annonce_favorisRepository.findAll();
         for (int i = 0; i < liste.size() ; i++) {
             if(liste.get(i).getId_annonce() == id && liste.get(i).getId_utilisateur() == iduser){
