@@ -1,8 +1,11 @@
 package com.example.Carshop.Controller;
 
+import com.example.Carshop.Authentification.JwtUtil;
 import com.example.Carshop.Model.Notification;
 import com.example.Carshop.Service.NotificationService;
 import com.example.Carshop.api.APIResponse;
+
+import io.jsonwebtoken.Claims;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,10 +23,19 @@ public class NotificationController {
     @Autowired
     private NotificationService NotificationService;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
     @GetMapping
-    public ResponseEntity<APIResponse> getAllNotifications() {
+    public ResponseEntity<APIResponse> getAllNotifications(@RequestHeader(name = "Authorization") String authorizationHeader) {
         try {
-            List<Notification>  valeure = NotificationService.getAllNotifications();
+            int iduser = 0;
+            if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+                String token = authorizationHeader.substring(7);
+                Claims claims = jwtUtil.parseJwtClaims(token);                
+                iduser = JwtUtil.getUserId(claims);
+            }
+            List<Notification>  valeure = NotificationService.getMesNotif(iduser);
             APIResponse api = new APIResponse(null, valeure);
             return ResponseEntity.ok(api);
         } catch (Exception e) {

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
 import java.util.List;
 
 
@@ -153,6 +155,26 @@ public class Detail_annonceController {
         }
     }
 
+
+
+    @GetMapping("/searchmulti")
+    public ResponseEntity<APIResponse> multiAnnonce(@RequestBody(required = false) Detail_annonce annonce,
+    @RequestParam(name = "prix1", required = false) Double prix1,
+    @RequestParam(name = "prix2", required = false) Double prix2,
+    @RequestParam(name = "kilometrage1", required = false) Double kilometrage1,
+    @RequestParam(name = "kilometrage2", required = false) Double kilometrage2,
+    @RequestParam(name = "date1", required = false) Date date1,
+    @RequestParam(name = "date2", required = false) Date date2) {
+        try {
+            List<Detail_annonce> list = Detail_annonceService.rechercheMulticritere(annonce,prix1,prix2,kilometrage1,kilometrage2,date1,date2);
+            APIResponse api = new APIResponse(null, list);
+            return ResponseEntity.ok(api);
+        } catch (Exception e) {
+            e.printStackTrace();
+            APIResponse response = new APIResponse(e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
     // Autres méthodes CRUD personnalisées si nécessaire
 
 }

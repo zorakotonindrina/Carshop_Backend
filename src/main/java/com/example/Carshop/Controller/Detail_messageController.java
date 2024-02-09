@@ -13,7 +13,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/carshop/Detail_messages")
-
 public class Detail_messageController {
 
     
@@ -37,6 +36,20 @@ public class Detail_messageController {
     public ResponseEntity<APIResponse> getDetail_messageById(@PathVariable int id) {
          try {
             Detail_message valeure = Detail_messageService.getDetail_messageById(id);
+            APIResponse api = new APIResponse(null, valeure);
+            return ResponseEntity.ok(api);
+        } catch (Exception e) {
+            e.printStackTrace();
+            APIResponse response = new APIResponse(e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
+
+    @GetMapping("/messages/{id}")
+    public ResponseEntity<APIResponse> getDetail_messageByIdMessage(@PathVariable int id) {
+         try {
+            List<Detail_message> valeure = Detail_messageService.getDetail_messageByIdMessage(id);
             APIResponse api = new APIResponse(null, valeure);
             return ResponseEntity.ok(api);
         } catch (Exception e) {

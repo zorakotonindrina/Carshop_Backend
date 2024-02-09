@@ -1,6 +1,7 @@
 package com.example.Carshop.Model;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import org.springframework.data.annotation.Id;
@@ -16,18 +17,33 @@ public class Notification {
     int id_utilisateur;
     String nom_messageur;
     String contenu ;
-    Date date_notif ;
+    LocalDateTime date_notif ;
+    int etat;
 
-     public Notification() {
-    }
-
-    public Notification(int id_message, int id_utilisateur, String nom_messageur, String contenu, Date date_notif) {
+     public Notification(int id_message, int id_utilisateur, String nom_messageur, String contenu,
+            LocalDateTime date_notif, int etat) {
         this.id_message = id_message;
         this.id_utilisateur = id_utilisateur;
         this.nom_messageur = nom_messageur;
         this.contenu = contenu;
         this.date_notif = date_notif;
+        this.etat = etat;
     }
+
+
+    public int getEtat() {
+        return etat;
+    }
+
+    
+    public void setEtat(int etat) {
+        this.etat = etat;
+    }
+
+    public Notification() {
+    }
+
+    
 
     public int getId_message() {
         return id_message;
@@ -61,11 +77,11 @@ public class Notification {
         this.contenu = contenu;
     }
 
-    public Date getDate_notif() {
+    public LocalDateTime getDate_notif() {
         return date_notif;
     }
 
-    public void setDate_notif(Date date_notif) {
+    public void setDate_notif(LocalDateTime date_notif) {
         this.date_notif = date_notif;
     }
     
