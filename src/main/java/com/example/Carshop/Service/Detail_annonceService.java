@@ -75,7 +75,7 @@ public class Detail_annonceService {
 
 
 
-    public List<Detail_annonce> rechercheMulticritere(Detail_annonce annonce,Double prix1,Double prix2,Double kilometrage1,Double kilometrage2,Date date1,Date date2) {
+    public List<Detail_annonce> rechercheMulticritere(Detail_annonce annonce,Double prix1,Double prix2,Date date1,Date date2) {
         String sql = "SELECT * FROM v_annonce WHERE 1=1";
         MapSqlParameterSource parameters = new MapSqlParameterSource();
         
@@ -107,12 +107,6 @@ public class Detail_annonceService {
             sql += " AND prix  BETWEEN :prix1 AND :prix2";
             parameters.addValue("prix1",prix1);
             parameters.addValue("prix2",prix2);
-        }
-
-        if (kilometrage1 != null && kilometrage2 != null) {
-            sql += " AND kilometrage  BETWEEN :kilometrage1 AND :kilometrage2";
-            parameters.addValue("kilometrage1",kilometrage1);
-            parameters.addValue("kilometrage2",kilometrage2);
         }
 
         if (date1 != null && date2 != null) {
